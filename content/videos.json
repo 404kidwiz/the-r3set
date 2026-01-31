@@ -10,16 +10,16 @@
     {
         "id": "vid-1",
         "title": "Mike WiLL Made-It - 23 ft. Miley Cyrus, Wiz Khalifa, Juicy J",
-        "src": "https://www.youtube.com/embed/bbEoRnaOIbs",
-        "poster": "https://img.youtube.com/vi/bbEoRnaOIbs/maxresdefault.jpg",
+        "src": "https://www.youtube.com/embed/aX1Y_J6QJ-4",
+        "poster": "https://img.youtube.com/vi/aX1Y_J6QJ-4/maxresdefault.jpg",
         "category": "Music Videos",
         "type": "youtube"
     },
     {
         "id": "vid-2",
         "title": "Kendrick Lamar - HUMBLE.",
-        "src": "https://www.youtube.com/embed/tvTRZJ-4EyI",
-        "poster": "https://img.youtube.com/vi/tvTRZJ-4EyI/maxresdefault.jpg",
+        "src": "https://www.youtube.com/embed/tvS4Rz5G8hQ",
+        "poster": "https://img.youtube.com/vi/tvS4Rz5G8hQ/maxresdefault.jpg",
         "category": "Produced By",
         "type": "youtube"
     },
@@ -49,14 +49,94 @@
     },
     {
         "id": "vid-6",
-        "title": "Mike WiLL Made-It - Drinks On Us ft. The Weeknd, Swae Lee, Future",
-        "src": "https://www.youtube.com/embed/RkZyl96_R9Y",
-        "poster": "https://img.youtube.com/vi/RkZyl96_R9Y/maxresdefault.jpg",
+        "title": "Mike WiLL Made-It - Rake It Up ft. Nicki Minaj, Yo Gotti",
+        "src": "https://www.youtube.com/embed/OrSadmwmmAs",
+        "poster": "https://img.youtube.com/vi/OrSadmwmmAs/maxresdefault.jpg",
         "category": "Music Videos",
         "type": "youtube"
     },
     {
         "id": "vid-7",
+        "title": "Mike WiLL Made-It - Gucci On My ft. 21 Savage, YG, Migos",
+        "src": "https://www.youtube.com/embed/Lw3n_qJjN3g",
+        "poster": "https://img.youtube.com/vi/Lw3n_qJjN3g/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-8",
+        "title": "Mike WiLL Made-It - What That Speed Bout?! ft. Nicki Minaj, YoungBoy NBA",
+        "src": "https://www.youtube.com/embed/f2M5s_F33lE",
+        "poster": "https://img.youtube.com/vi/f2M5s_F33lE/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-9",
+        "title": "Kendrick Lamar - DNA.",
+        "src": "https://www.youtube.com/embed/NLZRYQMLC_I",
+        "poster": "https://img.youtube.com/vi/NLZRYQMLC_I/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-10",
+        "title": "Rae Sremmurd - Powerglide ft. Juicy J",
+        "src": "https://www.youtube.com/embed/zf08V3mHk6Q",
+        "poster": "https://img.youtube.com/vi/zf08V3mHk6Q/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-11",
+        "title": "Jay Rock, Kendrick Lamar, Future, James Blake - King's Dead",
+        "src": "https://www.youtube.com/embed/VwAnsAUYnw4",
+        "poster": "https://img.youtube.com/vi/VwAnsAUYnw4/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-12",
+        "title": "Polo G - Go Stupid ft. Stunna 4 Vegas, NLE Choppa",
+        "src": "https://www.youtube.com/embed/F0Bw4GqD9m0",
+        "poster": "https://img.youtube.com/vi/F0Bw4GqD9m0/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-13",
+        "title": "Mike WiLL Made-It - Perfect Pint ft. Kendrick Lamar, Gucci Mane, Rae Sremmurd",
+        "src": "https://www.youtube.com/embed/es2ATiwlWOE",
+        "poster": "https://img.youtube.com/vi/es2ATiwlWOE/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-14",
+        "title": "Rihanna - Pour It Up",
+        "src": "https://www.youtube.com/embed/ehcVomMexkY",
+        "poster": "https://img.youtube.com/vi/ehcVomMexkY/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-15",
+        "title": "Ciara - Body Party",
+        "src": "https://www.youtube.com/embed/B9rSBcoX9ak",
+        "poster": "https://img.youtube.com/vi/B9rSBcoX9ak/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-16",
+        "title": "Lil Wayne - Love Me ft. Drake, Future",
+        "src": "https://www.youtube.com/embed/t9_1X_Gg0eA",
+        "poster": "https://img.youtube.com/vi/t9_1X_Gg0eA/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-17",
         "title": "Rae Sremmurd - No Type",
         "src": "https://www.youtube.com/embed/wzMrK-aIC6I",
         "poster": "https://img.youtube.com/vi/wzMrK-aIC6I/maxresdefault.jpg",
@@ -64,11 +144,19 @@
         "type": "youtube"
     },
     {
-        "id": "vid-8",
-        "title": "Mike WiLL Made-It - Perfect Pint ft. Kendrick Lamar, Gucci Mane, Rae Sremmurd",
-        "src": "https://www.youtube.com/embed/C91axg663Zk",
-        "poster": "https://img.youtube.com/vi/C91axg663Zk/maxresdefault.jpg",
+        "id": "vid-18",
+        "title": "Nicki Minaj, Mike WiLL Made-It - Black Barbies",
+        "src": "https://www.youtube.com/embed/qQ0K3eYp7QY",
+        "poster": "https://img.youtube.com/vi/qQ0K3eYp7QY/maxresdefault.jpg",
         "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-19",
+        "title": "The Carters - APESHIT",
+        "src": "https://www.youtube.com/embed/kbMqWXnpXcA",
+        "poster": "https://img.youtube.com/vi/kbMqWXnpXcA/maxresdefault.jpg",
+        "category": "Produced By",
         "type": "youtube"
     }
 ]
