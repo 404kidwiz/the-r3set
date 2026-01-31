@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "title": "THE R3SET Official Trailer",
+        "src": "/videos/trailer.mp4",
+        "poster": "/posters/trailer.jpg",
+        "category": "Trailer"
+    },
+    {
+        "id": "2",
+        "title": "Behind The Scenes",
+        "src": "/videos/bts-01.mp4",
+        "poster": "/posters/bts-01.jpg",
+        "category": "BTS"
+    }
+]

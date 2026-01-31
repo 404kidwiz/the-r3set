@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "title": "Rae Sremmurd - SR3MM",
+        "year": "2018",
+        "role": "Producer",
+        "artwork": "/images/discography/sr3mm.jpg",
+        "category": "album",
+        "links": {
+            "spotify": "https://open.spotify.com/album/...",
+            "apple": "https://music.apple.com/..."
+        }
+    },
+    {
+        "id": "2",
+        "title": "Ransom 2",
+        "year": "2017",
+        "role": "Executive Producer",
+        "artwork": "/images/discography/ransom2.jpg",
+        "category": "mixtape",
+        "links": {
+            "spotify": "https://open.spotify.com/album/...",
+            "apple": "https://music.apple.com/..."
+        }
+    },
+    {
+        "id": "3",
+        "title": "Perfect Pint (feat. Kendrick Lamar, Gucci Mane & Rae Sremmurd)",
+        "year": "2017",
+        "role": "Producer",
+        "artwork": "/images/discography/perfect-pint.jpg",
+        "category": "single",
+        "links": {
+            "spotify": "https://open.spotify.com/track/...",
+            "apple": "https://music.apple.com/..."
+        }
+    },
+    {
+        "id": "4",
+        "title": "Miley Cyrus - Bangerz",
+        "year": "2013",
+        "role": "Producer",
+        "artwork": "/images/discography/bangerz.jpg",
+        "category": "production",
+        "links": {
+            "spotify": "https://open.spotify.com/album/...",
+            "apple": "https://music.apple.com/..."
+        }
+    }
+]

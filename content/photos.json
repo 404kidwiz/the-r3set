@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "title": "Studio Session 01",
+        "src": "/images/photos/studio-01.jpg",
+        "category": "Studio",
+        "alt": "Mike Will in the studio"
+    },
+    {
+        "id": "2",
+        "title": "Performance 01",
+        "src": "/images/photos/performance-01.jpg",
+        "category": "Performance",
+        "alt": "Mike Will performing live"
+    }
+]

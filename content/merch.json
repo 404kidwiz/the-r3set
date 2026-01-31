@@ -1,0 +1,71 @@
+[
+    {
+        "id": "1",
+        "name": "THE R3SET Hoodie",
+        "price": 85,
+        "image": "/images/merch/hoodie.jpg",
+        "tags": [
+            "DROP"
+        ],
+        "variants": [
+            {
+                "size": "S",
+                "inStock": true
+            },
+            {
+                "size": "M",
+                "inStock": true
+            },
+            {
+                "size": "L",
+                "inStock": true
+            },
+            {
+                "size": "XL",
+                "inStock": false
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Limited Edition Vinyl",
+        "price": 45,
+        "image": "/images/merch/vinyl.jpg",
+        "tags": [
+            "LIMITED"
+        ],
+        "variants": [
+            {
+                "variant": "Black",
+                "inStock": true
+            },
+            {
+                "variant": "Clear",
+                "inStock": true
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Vault Access Tee",
+        "price": 55,
+        "image": "/images/merch/vault-tee.jpg",
+        "tags": [
+            "VAULT"
+        ],
+        "variants": [
+            {
+                "size": "S",
+                "inStock": true
+            },
+            {
+                "size": "M",
+                "inStock": true
+            },
+            {
+                "size": "L",
+                "inStock": true
+            }
+        ]
+    }
+]
