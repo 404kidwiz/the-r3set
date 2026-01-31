@@ -1,16 +1,74 @@
 [
     {
-        "id": "1",
+        "id": "vid-0",
         "title": "THE R3SET Official Trailer",
         "src": "/videos/trailer.mp4",
         "poster": "/posters/trailer.jpg",
-        "category": "Trailer"
+        "category": "Trailer",
+        "type": "file"
     },
     {
-        "id": "2",
-        "title": "Behind The Scenes",
-        "src": "/videos/bts-01.mp4",
-        "poster": "/posters/bts-01.jpg",
-        "category": "BTS"
+        "id": "vid-1",
+        "title": "Mike WiLL Made-It - 23 ft. Miley Cyrus, Wiz Khalifa, Juicy J",
+        "src": "https://www.youtube.com/embed/bbEoRnaOIbs",
+        "poster": "https://img.youtube.com/vi/bbEoRnaOIbs/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-2",
+        "title": "Kendrick Lamar - HUMBLE.",
+        "src": "https://www.youtube.com/embed/tvTRZJ-4EyI",
+        "poster": "https://img.youtube.com/vi/tvTRZJ-4EyI/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-3",
+        "title": "Rae Sremmurd - Black Beatles ft. Gucci Mane",
+        "src": "https://www.youtube.com/embed/b8m9zhNAgKs",
+        "poster": "https://img.youtube.com/vi/b8m9zhNAgKs/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-4",
+        "title": "Miley Cyrus - We Can't Stop",
+        "src": "https://www.youtube.com/embed/LrUvu1_JI38",
+        "poster": "https://img.youtube.com/vi/LrUvu1_JI38/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-5",
+        "title": "Beyoncé - Formation",
+        "src": "https://www.youtube.com/embed/WDZJPJV__bQ",
+        "poster": "https://img.youtube.com/vi/WDZJPJV__bQ/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-6",
+        "title": "Mike WiLL Made-It - Drinks On Us ft. The Weeknd, Swae Lee, Future",
+        "src": "https://www.youtube.com/embed/RkZyl96_R9Y",
+        "poster": "https://img.youtube.com/vi/RkZyl96_R9Y/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-7",
+        "title": "Rae Sremmurd - No Type",
+        "src": "https://www.youtube.com/embed/wzMrK-aIC6I",
+        "poster": "https://img.youtube.com/vi/wzMrK-aIC6I/maxresdefault.jpg",
+        "category": "Produced By",
+        "type": "youtube"
+    },
+    {
+        "id": "vid-8",
+        "title": "Mike WiLL Made-It - Perfect Pint ft. Kendrick Lamar, Gucci Mane, Rae Sremmurd",
+        "src": "https://www.youtube.com/embed/C91axg663Zk",
+        "poster": "https://img.youtube.com/vi/C91axg663Zk/maxresdefault.jpg",
+        "category": "Music Videos",
+        "type": "youtube"
     }
 ]

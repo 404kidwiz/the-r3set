@@ -1,50 +1,149 @@
 [
     {
-        "id": "1",
-        "title": "Rae Sremmurd - SR3MM",
-        "year": "2018",
-        "role": "Producer",
-        "artwork": "/images/discography/sr3mm.jpg",
+        "id": "alb-1",
+        "title": "Dr. Mike",
+        "year": "2024",
+        "role": "Producer & Artist",
+        "artwork": "/images/discography/dr-mike.jpg",
         "category": "album",
         "links": {
-            "spotify": "https://open.spotify.com/album/...",
-            "apple": "https://music.apple.com/..."
+            "spotify": "https://open.spotify.com/artist/0NWXwZ0rWf4e5B7s2Z0Z0d",
+            "apple": "https://music.apple.com/us/artist/mike-will-made-it/492657758"
         }
     },
     {
-        "id": "2",
+        "id": "alb-2",
         "title": "Ransom 2",
         "year": "2017",
         "role": "Executive Producer",
         "artwork": "/images/discography/ransom2.jpg",
+        "category": "album",
+        "links": {
+            "spotify": "https://open.spotify.com/album/4vM7iZ5zZ5zZ5zZ5zZ5zZ5",
+            "apple": "https://music.apple.com/us/album/ransom-2/1216999721"
+        }
+    },
+    {
+        "id": "alb-3",
+        "title": "SR3MM (Rae Sremmurd)",
+        "year": "2018",
+        "role": "Executive Producer",
+        "artwork": "/images/discography/sr3mm.jpg",
+        "category": "album",
+        "links": {
+            "spotify": "https://open.spotify.com/album/42wlQ9Z9Z9Z9Z9Z9Z9Z9Z9"
+        }
+    },
+    {
+        "id": "alb-4",
+        "title": "Edgewood (with Trouble)",
+        "year": "2018",
+        "role": "Executive Producer",
+        "artwork": "/images/discography/edgewood.jpg",
+        "category": "album",
+        "links": {
+            "spotify": "https://open.spotify.com/album/123"
+        }
+    },
+    {
+        "id": "mix-1",
+        "title": "Ransom",
+        "year": "2014",
+        "role": "Artist",
+        "artwork": "/images/discography/ransom.jpg",
         "category": "mixtape",
         "links": {
-            "spotify": "https://open.spotify.com/album/...",
-            "apple": "https://music.apple.com/..."
+            "soundcloud": "https://soundcloud.com/mikewillmadeit/sets/ransom"
         }
     },
     {
-        "id": "3",
-        "title": "Perfect Pint (feat. Kendrick Lamar, Gucci Mane & Rae Sremmurd)",
+        "id": "mix-2",
+        "title": "Est. in 1989 Pt. 3 (The Album)",
+        "year": "2013",
+        "role": "Artist",
+        "artwork": "/images/discography/est1989-3.jpg",
+        "category": "mixtape",
+        "links": {}
+    },
+    {
+        "id": "prod-1",
+        "title": "HUMBLE. (Kendrick Lamar)",
         "year": "2017",
         "role": "Producer",
-        "artwork": "/images/discography/perfect-pint.jpg",
-        "category": "single",
-        "links": {
-            "spotify": "https://open.spotify.com/track/...",
-            "apple": "https://music.apple.com/..."
-        }
+        "artwork": "/images/discography/humble.jpg",
+        "category": "production",
+        "links": {}
     },
     {
-        "id": "4",
-        "title": "Miley Cyrus - Bangerz",
+        "id": "prod-2",
+        "title": "Formation (Beyoncé)",
+        "year": "2016",
+        "role": "Producer",
+        "artwork": "/images/discography/formation.jpg",
+        "category": "production",
+        "links": {}
+    },
+    {
+        "id": "prod-3",
+        "title": "Black Beatles (Rae Sremmurd)",
+        "year": "2016",
+        "role": "Producer",
+        "artwork": "/images/discography/black-beatles.jpg",
+        "category": "production",
+        "links": {}
+    },
+    {
+        "id": "prod-4",
+        "title": "We Can't Stop (Miley Cyrus)",
         "year": "2013",
         "role": "Producer",
         "artwork": "/images/discography/bangerz.jpg",
         "category": "production",
-        "links": {
-            "spotify": "https://open.spotify.com/album/...",
-            "apple": "https://music.apple.com/..."
-        }
+        "links": {}
+    },
+    {
+        "id": "prod-5",
+        "title": "23 (feat. Miley Cyrus, Wiz Khalifa)",
+        "year": "2013",
+        "role": "Artist",
+        "artwork": "/images/discography/23.jpg",
+        "category": "single",
+        "links": {}
+    },
+    {
+        "id": "prod-6",
+        "title": "Pour It Up (Rihanna)",
+        "year": "2012",
+        "role": "Producer",
+        "artwork": "/images/discography/autopilot.jpg",
+        "category": "production",
+        "links": {}
+    },
+    {
+        "id": "prod-7",
+        "title": "Mercy (Kanye West)",
+        "year": "2012",
+        "role": "Producer",
+        "artwork": "/images/discography/cruel-summer.jpg",
+        "category": "production",
+        "links": {}
+    },
+    {
+        "id": "prod-8",
+        "title": "No Lie (2 Chainz)",
+        "year": "2012",
+        "role": "Producer",
+        "artwork": "/images/discography/based-on-tru-story.jpg",
+        "category": "production",
+        "links": {}
+    },
+    {
+        "id": "prod-9",
+        "title": "Bandz A Make Her Dance (Juicy J)",
+        "year": "2012",
+        "role": "Producer",
+        "artwork": "/images/discography/stay-trippy.jpg",
+        "category": "production",
+        "links": {}
     }
 ]

@@ -9,9 +9,10 @@ interface TrailerModalProps {
     isOpen: boolean;
     onClose: () => void;
     videoSrc: string;
+    videoType?: 'file' | 'youtube';
 }
 
-export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModalProps) {
+export default function TrailerModal({ isOpen, onClose, videoSrc, videoType = 'file' }: TrailerModalProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -20,7 +21,7 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
 
         // Focus trap
         const focusableElements = modalRef.current?.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), iframe'
         );
         const firstElement = focusableElements?.[0] as HTMLElement;
         const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
@@ -58,7 +59,7 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
             document.removeEventListener('keydown', handleTab);
             document.removeEventListener('keydown', handleEscape);
 
-            // Pause video on unmount
+            // Pause video on unmount (only for local files)
             if (currentVideo) {
                 currentVideo.pause();
             }
@@ -73,7 +74,7 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
             onClick={onClose}
             aria-modal="true"
             role="dialog"
-            aria-label="Trailer video player"
+            aria-label="Video player"
         >
             <div
                 ref={modalRef}
@@ -84,7 +85,7 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors focus-visible:ring-2 focus-visible:ring-accent"
-                    aria-label="Close trailer"
+                    aria-label="Close video"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -92,17 +93,27 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
                 </button>
 
                 {/* Video Player */}
-                <video
-                    ref={videoRef}
-                    className="w-full h-full"
-                    src={videoSrc}
-                    controls
-                    autoPlay
-                    playsInline
-                    aria-label="THE R3SET album trailer"
-                >
-                    <track kind="captions" />
-                </video>
+                {videoType === 'youtube' ? (
+                    <iframe
+                        src={`${videoSrc}?autoplay=1&rel=0&modestbranding=1`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="YouTube video player"
+                    />
+                ) : (
+                    <video
+                        ref={videoRef}
+                        className="w-full h-full"
+                        src={videoSrc}
+                        controls
+                        autoPlay
+                        playsInline
+                        aria-label="Video player"
+                    >
+                        <track kind="captions" />
+                    </video>
+                )}
             </div>
         </div>
     );

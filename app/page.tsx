@@ -59,12 +59,13 @@ const merchProducts = merchData.map((item: { id: string; name: string; price: nu
 }));
 
 // Transform video data to match VideoItem interface
-const videoItems = (videosData as { id: string; title: string; poster: string; src: string; category: string }[]).map((item) => ({
+const videoItems = (videosData as { id: string; title: string; poster: string; src: string; category: string; type?: string }[]).map((item) => ({
   id: item.id,
   title: item.title,
   thumbnail: item.poster, // poster is the thumbnail
   videoSrc: item.src,      // src is the video source
-  category: item.category as 'Trailer' | 'Music Videos' | 'BTS',
+  category: item.category as 'Trailer' | 'Music Videos' | 'BTS' | 'Produced By',
+  type: (item.type || 'file') as 'file' | 'youtube',
 }));
 
 const bioData = {
