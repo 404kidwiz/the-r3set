@@ -4,12 +4,14 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function AlbumReveal() {
     const containerRef = useRef<HTMLDivElement>(null);
     const coverRef = useRef<HTMLDivElement>(null);
     const tracklistRef = useRef<HTMLDivElement>(null);
     const creditsRef = useRef<HTMLDivElement>(null);
+    const scrollTriggerRef = useRef<{ kill: () => void } | null>(null);
 
     useEffect(() => {
         // Dynamic import GSAP for code-splitting (nextjs-best-practices line 114)
@@ -39,6 +41,9 @@ export default function AlbumReveal() {
                 }
             });
 
+            // Store for cleanup
+            scrollTriggerRef.current = tl.scrollTrigger as { kill: () => void };
+
             // Sequence: scale + rotate → tracklist → credits
             tl.from(coverRef.current, {
                 scale: 0.8,
@@ -62,6 +67,13 @@ export default function AlbumReveal() {
         };
 
         initAnimation();
+
+        // Cleanup on unmount
+        return () => {
+            if (scrollTriggerRef.current) {
+                scrollTriggerRef.current.kill();
+            }
+        };
     }, []);
 
     return (
@@ -79,10 +91,13 @@ export default function AlbumReveal() {
                         style={{ transformStyle: 'preserve-3d' }}
                     >
                         <div className="w-full h-full bg-surface border border-stroke rounded-sm overflow-hidden shadow-2xl">
-                            {/* Placeholder - Replace with actual album art */}
-                            <div className="w-full h-full bg-gradient-to-br from-accent/20 to-bg flex items-center justify-center">
-                                <span className="text-display-l font-display">THE R3SET</span>
-                            </div>
+                            <Image
+                                src="/album-cover.jpg"
+                                alt="THE R3SET Album Cover"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         </div>
                     </div>
 

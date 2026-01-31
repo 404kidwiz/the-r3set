@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 interface ClipChapterProps {
   clipSrc: string;
@@ -14,7 +15,9 @@ export default function ClipChapter({ clipSrc, posterSrc, chapterLabel, clipNumb
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isApproaching, setIsApproaching] = useState(false);
   const rafRef = useRef<number | undefined>(undefined);
+  const lastTimeRef = useRef<number>(0);
 
   // Detect reduced motion preference
   const prefersReducedMotion = typeof window !== 'undefined'
@@ -27,17 +30,29 @@ export default function ClipChapter({ clipSrc, posterSrc, chapterLabel, clipNumb
 
     if (!video || !container) return;
 
-    // IntersectionObserver to pause updates when offscreen
-    const observer = new IntersectionObserver(
+    // IntersectionObserver for visibility + approach detection
+    const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
       { threshold: 0.1 }
     );
 
-    observer.observe(container);
+    // Approach detection - preload video when close
+    const approachObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isApproaching) {
+          setIsApproaching(true);
+          video.preload = 'auto';
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
 
-    // Scroll-scrub logic
+    visibilityObserver.observe(container);
+    approachObserver.observe(container);
+
+    // Scroll-scrub logic with iOS optimizations
     const updateVideoTime = () => {
       if (!isVisible || prefersReducedMotion) return;
 
@@ -54,12 +69,12 @@ export default function ClipChapter({ clipSrc, posterSrc, chapterLabel, clipNumb
       if (video.duration) {
         const targetTime = scrollProgress * video.duration;
 
-        // Clamp updates to avoid jank (iOS optimization)
-        const currentTime = video.currentTime;
-        const delta = Math.abs(targetTime - currentTime);
+        // iOS optimization: throttle updates to ~15fps for smoother performance
+        const delta = Math.abs(targetTime - lastTimeRef.current);
 
-        if (delta > 0.033) { // ~2 frames at 60fps
+        if (delta > 0.066) { // ~15fps throttle for iOS Safari
           video.currentTime = targetTime;
+          lastTimeRef.current = targetTime;
         }
       }
 
@@ -75,9 +90,10 @@ export default function ClipChapter({ clipSrc, posterSrc, chapterLabel, clipNumb
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
-      observer.disconnect();
+      visibilityObserver.disconnect();
+      approachObserver.disconnect();
     };
-  }, [isVisible, prefersReducedMotion]);
+  }, [isVisible, isApproaching, prefersReducedMotion]);
 
   return (
     <div
@@ -89,10 +105,11 @@ export default function ClipChapter({ clipSrc, posterSrc, chapterLabel, clipNumb
         {/* Reduced Motion: Show Poster Only */}
         {prefersReducedMotion ? (
           <div className="w-full h-full relative">
-            <img
+            <Image
               src={posterSrc}
               alt={chapterLabel || `Chapter ${clipNumber} scene`}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             {chapterLabel && (
               <div className="absolute bottom-8 left-8">

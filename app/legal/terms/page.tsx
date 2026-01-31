@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
     title: 'Terms of Service - THE R3SET',
     robots: 'noindex',
@@ -33,7 +35,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-h2 font-semibold text-fg mb-4">3. Disclaimer</h2>
                         <p>
-                            The materials on this website are provided on an 'as is' basis. We make no warranties,
+                            The materials on this website are provided on an &apos;as is&apos; basis. We make no warranties,
                             expressed or implied, and hereby disclaim and negate all other warranties including,
                             without limitation, implied warranties or conditions of merchantability, fitness for a
                             particular purpose, or non-infringement of intellectual property or other violation of rights.
@@ -58,9 +60,9 @@ export default function TermsPage() {
                     </section>
 
                     <div className="mt-12 pt-8 border-t border-stroke">
-                        <a href="/" className="text-accent hover:underline">
+                        <Link href="/" className="text-accent hover:underline">
                             ← Back to home
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

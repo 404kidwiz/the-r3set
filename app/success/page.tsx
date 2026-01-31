@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
     title: 'Order Successful - THE R3SET',
 };
@@ -24,7 +26,7 @@ export default function SuccessPage({
                 {/* Success Message */}
                 <h1 className="text-display-l font-display mb-4">Order Confirmed!</h1>
                 <p className="text-body text-muted mb-8">
-                    Thank you for your purchase. You'll receive a confirmation email shortly with your order details and tracking information.
+                    Thank you for your purchase. You&apos;ll receive a confirmation email shortly with your order details and tracking information.
                 </p>
 
                 {/* Order ID */}
@@ -37,18 +39,18 @@ export default function SuccessPage({
 
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a
+                    <Link
                         href="/"
                         className="px-6 py-3 bg-accent text-bg rounded-sm font-medium hover:bg-accent/90 transition-colors"
                     >
                         Back to Home
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                         href="/#merch"
                         className="px-6 py-3 bg-surface text-fg rounded-sm font-medium hover:bg-surface-2 transition-colors border border-stroke"
                     >
                         Continue Shopping
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Additional Info */}

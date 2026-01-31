@@ -90,7 +90,7 @@ export function trackCommerceEvent(event: CommerceEvent, data: {
     quantity?: number;
     value?: number;
     currency?: string;
-    items?: any[];
+    items?: unknown[];
     item_category?: string;
     item_variant?: string;
 }) {
@@ -152,7 +152,7 @@ export function initPostHog() {
     import('posthog-js').then(({ default: posthog }) => {
         posthog.init(apiKey, {
             api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
-            loaded: (posthog) => {
+            loaded: () => {
                 if (process.env.NODE_ENV === 'development') {
                     // Optional: opt out in dev to avoid noise, or keep it for testing
                     // posthog.opt_out_capturing();
@@ -180,9 +180,9 @@ export function initGA4() {
 // Type augmentation for window object
 declare global {
     interface Window {
-        gtag?: (...args: any[]) => void;
+        gtag?: (...args: unknown[]) => void;
         posthog?: {
-            capture: (event: string, properties?: any) => void;
+            capture: (event: string, properties?: Record<string, unknown>) => void;
         };
     }
 }

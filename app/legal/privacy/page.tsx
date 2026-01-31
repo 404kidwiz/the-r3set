@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
     title: 'Privacy Policy - THE R3SET',
     robots: 'noindex',
@@ -56,9 +58,9 @@ export default function PrivacyPage() {
                     </section>
 
                     <div className="mt-12 pt-8 border-t border-stroke">
-                        <a href="/" className="text-accent hover:underline">
+                        <Link href="/" className="text-accent hover:underline">
                             ← Back to home
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Button from './Button';
 import Tag from './Tag';
 import TrailerModal from './TrailerModal';
 

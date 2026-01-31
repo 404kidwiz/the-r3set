@@ -52,14 +52,15 @@ export default function TrailerModal({ isOpen, onClose, videoSrc }: TrailerModal
         document.addEventListener('keydown', handleEscape);
         firstElement?.focus();
 
+        const currentVideo = videoRef.current;
         return () => {
             document.body.style.overflow = '';
             document.removeEventListener('keydown', handleTab);
             document.removeEventListener('keydown', handleEscape);
 
             // Pause video on unmount
-            if (videoRef.current) {
-                videoRef.current.pause();
+            if (currentVideo) {
+                currentVideo.pause();
             }
         };
     }, [isOpen, onClose]);

@@ -1,10 +1,11 @@
-// @builder: Main page - Server Component by default (nextjs-best-practices line 23)
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import NavAutoHide from '@/components/NavAutoHide';
 import ClipChapter from '@/components/ClipChapter';
 import AlbumReveal from '@/components/AlbumReveal';
 import CartDrawer from '@/components/CartDrawer';
 import Tag from '@/components/Tag';
+import HeroCta from '@/components/HeroCta';
 
 // Lazy load below-fold components
 const DiscographyGrid = dynamic(() => import('@/components/DiscographyGrid'), {
@@ -34,7 +35,7 @@ export const metadata = {
 };
 
 // Transform data to match component interfaces
-const discographyItems = discographyData.map((item: any) => ({
+const discographyItems = discographyData.map((item: { id: string; title: string; year: string; role: string; category: string; artwork: string; links?: { spotify?: string; apple?: string; youtube?: string } }) => ({
   id: item.id,
   title: item.title,
   year: parseInt(item.year),
@@ -44,21 +45,21 @@ const discographyItems = discographyData.map((item: any) => ({
   links: item.links,
 }));
 
-const merchProducts = merchData.map((item: any) => ({
+const merchProducts = merchData.map((item: { id: string; name: string; price: number; image: string; tags: string[]; variants: { size?: string; variant?: string; inStock?: boolean }[] }) => ({
   id: item.id,
   title: item.name,
   price: item.price,
   image: item.image,
   tags: item.tags?.map((t: string) => t.toLowerCase() as 'drop' | 'limited' | 'vault'),
   variants: {
-    sizes: item.variants?.filter((v: any) => v.size).map((v: any) => v.size),
-    colors: item.variants?.filter((v: any) => v.variant).map((v: any) => v.variant),
+    sizes: item.variants?.filter((v: { size?: string }) => !!v.size).map((v) => v.size as string) || [],
+    colors: item.variants?.filter((v: { variant?: string }) => !!v.variant).map((v) => v.variant as string) || [],
   },
-  inStock: item.variants?.some((v: any) => v.inStock) ?? true,
+  inStock: item.variants?.some((v: { inStock?: boolean }) => v.inStock) ?? true,
 }));
 
 // Transform video data to match VideoItem interface
-const videoItems = videosData.map((item: any) => ({
+const videoItems = (videosData as { id: string; title: string; poster: string; src: string; category: string }[]).map((item) => ({
   id: item.id,
   title: item.title,
   thumbnail: item.poster, // poster is the thumbnail
@@ -94,14 +95,24 @@ export default function HomePage() {
       <CartDrawer />
 
       <main id="main-content">
-        {/* Chapter 1: Hero */}
-        <ClipChapter
-          clipSrc="/clips/clip01.mp4"
-          posterSrc="/posters/clip01.jpg"
-          chapterLabel="Chapter I"
-          clipNumber={1}
-          priority={true}
-        />
+        {/* Chapter 1: Hero with CTA overlay */}
+        <div className="relative">
+          <ClipChapter
+            clipSrc="/clips/clip01.mp4"
+            posterSrc="/posters/clip01.jpg"
+            chapterLabel="Chapter I"
+            clipNumber={1}
+            priority={true}
+          />
+          {/* Hero CTA Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ top: '50vh' }}>
+            <div className="text-center pointer-events-auto">
+              <h1 className="text-display-xl font-display mb-4">THE R3SET</h1>
+              <p className="text-muted mb-8">A new album by Mike Will Made-It</p>
+              <HeroCta trailerSrc="/clips/clip01.mp4" />
+            </div>
+          </div>
+        </div>
 
         {/* Album Cover Reveal */}
         <AlbumReveal />
@@ -186,8 +197,8 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <p className="text-sm text-muted">© 2026 Mike Will Made-It. All rights reserved.</p>
               <div className="flex gap-6">
-                <a href="/legal/privacy" className="text-sm text-muted hover:text-fg transition-colors">Privacy</a>
-                <a href="/legal/terms" className="text-sm text-muted hover:text-fg transition-colors">Terms</a>
+                <Link href="/legal/privacy" className="text-sm text-muted hover:text-fg transition-colors">Privacy</Link>
+                <Link href="/legal/terms" className="text-sm text-muted hover:text-fg transition-colors">Terms</Link>
               </div>
             </div>
           </div>

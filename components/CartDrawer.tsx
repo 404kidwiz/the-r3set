@@ -4,10 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Button from './Button';
 import { useCartStore, type CartItem } from '@/lib/cart-store';
-import { loadStripe } from '@stripe/stripe-js';
 import { trackCommerceEvent } from '@/lib/analytics';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+// stripePromise is not used in the checkout flow which redirects to a URL
 
 /**
  * Slide-in cart drawer with focus trap and body scroll lock

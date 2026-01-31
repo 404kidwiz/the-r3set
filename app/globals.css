@@ -91,3 +91,183 @@
     z-index: 9999;
   }
 }
+
+@layer components {
+
+  /* Typography Scale */
+  .text-display-xl {
+    font-size: clamp(4.5rem, 10vw, 6rem);
+  }
+
+  .text-display-l {
+    font-size: clamp(3rem, 8vw, 4rem);
+  }
+
+  .text-h1 {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+  }
+
+  .text-h2 {
+    font-size: clamp(1.75rem, 4vw, 2rem);
+  }
+
+  .text-h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+  }
+
+  .text-body {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+  }
+
+  .text-small {
+    font-size: 0.875rem;
+  }
+
+  .text-micro {
+    font-size: 0.75rem;
+  }
+
+  /* Section Layout */
+  .section-spacing {
+    padding-top: clamp(4rem, 10vh, 8rem);
+    padding-bottom: clamp(4rem, 10vh, 8rem);
+  }
+
+  .section-container {
+    width: 100%;
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Buttons - Accent for CTAs ONLY */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: var(--accent);
+    color: #fff;
+    border-radius: 2px;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    color: var(--fg);
+    border: 1px solid var(--stroke);
+    border-radius: 2px;
+    transition: border-color 150ms ease, background-color 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--fg);
+    background-color: var(--surface);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--muted);
+    transition: color 150ms ease;
+    cursor: pointer;
+  }
+
+  .btn-ghost:hover {
+    color: var(--fg);
+  }
+
+  /* Card Component */
+  .card {
+    background-color: var(--surface);
+    border: 1px solid var(--stroke);
+    border-radius: 4px;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .card:hover {
+    border-color: color-mix(in srgb, var(--stroke) 80%, var(--fg));
+  }
+
+  /* Tags - Accent for labels ONLY */
+  .tag-drop {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: var(--accent);
+    color: #fff;
+    border-radius: 2px;
+  }
+
+  .tag-limited {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: var(--surface-2);
+    color: var(--fg);
+    border: 1px solid var(--stroke);
+    border-radius: 2px;
+  }
+
+  .tag-vault {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: var(--accent);
+    color: #fff;
+    border-radius: 2px;
+  }
+
+  /* Screen Reader Only (visible on focus) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

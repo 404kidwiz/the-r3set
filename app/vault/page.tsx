@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 // Metadata - noindex for Vault
 export const metadata = {
@@ -49,7 +48,7 @@ export default async function VaultPage() {
                     </form>
 
                     <p className="text-xs text-muted text-center mt-6">
-                        Don't have a passcode? Check your album purchase confirmation email.
+                        Don&apos;t have a passcode? Check your album purchase confirmation email.
                     </p>
                 </div>
             </div>

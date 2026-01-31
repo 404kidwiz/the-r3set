@@ -3,8 +3,8 @@
  * @design-system Centralized motion configuration, reduced motion support
  */
 
-let gsapInstance: any = null;
-let ScrollTriggerInstance: any = null;
+let gsapInstance: typeof import('gsap').gsap | null = null;
+let ScrollTriggerInstance: typeof import('gsap/ScrollTrigger').ScrollTrigger | null = null;
 
 /**
  * Dynamically load GSAP and ScrollTrigger
@@ -54,7 +54,7 @@ export function getScrollTriggerDefaults() {
  */
 export function cleanupScrollTriggers() {
     if (ScrollTriggerInstance) {
-        ScrollTriggerInstance.getAll().forEach((trigger: any) => trigger.kill());
+        ScrollTriggerInstance.getAll().forEach((trigger) => trigger.kill());
     }
 }
 
