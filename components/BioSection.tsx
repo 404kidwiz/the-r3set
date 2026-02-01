@@ -1,194 +1,335 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Button from './Button';
-import Tag from './Tag';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { Instagram, Twitter, Youtube, Music2, ExternalLink } from 'lucide-react';
+import { bio } from '@/lib/content';
 
-export interface Milestone {
-    year: number;
-    title: string;
-}
-
-interface BioSectionProps {
-    portrait: string;
-    story: string[];
-    milestones: Milestone[];
-    socials?: {
-        instagram?: string;
-        twitter?: string;
-        spotify?: string;
-        youtube?: string;
-    };
-}
+// Timeline milestones
+const milestones = [
+    { year: '2011', title: 'Tupac Back', desc: 'First major hit' },
+    { year: '2013', title: 'Grammy Nom', desc: 'Producer of Year' },
+    { year: '2016', title: 'Formation', desc: 'Beyoncé collab' },
+    { year: '2017', title: 'HUMBLE.', desc: 'Kendrick era' },
+    { year: '2024', title: 'Dirty Nachos', desc: 'Chief Keef album' },
+    { year: '2026', title: 'THE R3SET', desc: 'The new era' }
+];
 
 /**
- * Editorial biography section with timeline and newsletter CTA
- * @design-system Editorial layout, breathing room, semantic HTML
- * @accessibility Article semantics, ARIA labels on links, form validation
+ * BioSection - Editorial Feature Spread
+ * Premium layout with timeline and social links
  */
-export default function BioSection({ portrait, story, milestones, socials }: BioSectionProps) {
-    const [email, setEmail] = useState('');
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+export default function BioSection() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
 
-    const handleNewsletterSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus('loading');
-
-        // TODO: Integrate with newsletter service (Mailchimp, ConvertKit, etc.)
-        // Placeholder timeout simulation
-        setTimeout(() => {
-            import('@/lib/analytics').then(({ trackCTAClick }) => {
-                trackCTAClick('newsletter');
-            });
-            setStatus('success');
-            setEmail('');
-            setTimeout(() => setStatus('idle'), 3000);
-        }, 1000);
-    };
+    const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
     return (
-        <article className="w-full">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-                {/* Portrait */}
-                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-surface">
-                    <Image
-                        src={portrait}
-                        alt="Mike Will Made-It portrait"
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover"
-                        priority
-                    />
-                </div>
+        <section
+            ref={containerRef}
+            id="bio"
+            aria-labelledby="bio-heading"
+            className="relative py-32 overflow-hidden"
+            style={{ background: 'var(--bg-void)' }}
+        >
+            {/* Ambient background */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-40"
+                style={{
+                    background: 'radial-gradient(ellipse 100% 50% at 0% 50%, rgba(255, 45, 85, 0.08) 0%, transparent 50%)'
+                }}
+            />
 
-                {/* Story */}
-                <div className="flex flex-col justify-center">
-                    <h2 className="text-display-l font-display mb-8">About</h2>
-
-                    <div className="space-y-6 text-body text-muted leading-relaxed">
-                        {story.map((paragraph, idx) => (
-                            <p key={idx}>{paragraph}</p>
-                        ))}
-                    </div>
-
-                    {/* Social Links */}
-                    {socials && (
-                        <div className="flex gap-4 mt-8" aria-label="Social media links">
-                            {socials.instagram && (
-                                <a
-                                    href={socials.instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-3 text-muted hover:text-accent hover:bg-surface rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    aria-label="Follow on Instagram"
-                                    onClick={() => import('@/lib/analytics').then(({ trackCTAClick }) => trackCTAClick('vault'))} // Reusing vault label or add new one? Using generic for now
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                    </svg>
-                                </a>
-                            )}
-                            {socials.twitter && (
-                                <a
-                                    href={socials.twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-3 text-muted hover:text-accent hover:bg-surface rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    aria-label="Follow on Twitter/X"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                    </svg>
-                                </a>
-                            )}
-                            {socials.spotify && (
-                                <a
-                                    href={socials.spotify}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-3 text-muted hover:text-accent hover:bg-surface rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    aria-label="Listen on Spotify"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
-                                    </svg>
-                                </a>
-                            )}
-                            {socials.youtube && (
-                                <a
-                                    href={socials.youtube}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-3 text-muted hover:text-accent hover:bg-surface rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    aria-label="Subscribe on YouTube"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                    </svg>
-                                </a>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Milestones Timeline */}
-            <section className="mb-16">
-                <h3 className="text-h2 font-display mb-8 text-center">Career Highlights</h3>
-                <div className="overflow-x-auto pb-4 -mx-4 px-4">
-                    <div className="flex gap-4 min-w-max justify-center">
-                        {milestones.map((milestone, idx) => (
-                            <div
-                                key={idx}
-                                className="flex-shrink-0 w-48 p-4 bg-surface rounded-sm border border-stroke hover:border-fg/20 transition-colors"
-                            >
-                                <Tag variant="category" className="mb-2">{milestone.year}</Tag>
-                                <p className="text-sm text-fg">{milestone.title}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Newsletter Signup */}
-            <section className="max-w-xl mx-auto text-center">
-                <h3 className="text-h2 font-display mb-4">Stay Updated</h3>
-                <p className="text-body text-muted mb-6">
-                    Get the latest news, releases, and exclusive content delivered to your inbox.
-                </p>
-
-                <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
-                    <label htmlFor="newsletter-email" className="sr-only">
-                        Email address
-                    </label>
-                    <input
-                        id="newsletter-email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        required
-                        disabled={status === 'loading' || status === 'success'}
-                        className="flex-1 px-4 py-3 bg-surface border border-stroke rounded-sm text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
-                        autoComplete="email"
-                    />
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        loading={status === 'loading'}
-                        disabled={status === 'success'}
+            <div className="container mx-auto px-4 sm:px-6">
+                {/* Pull Quote Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                    className="text-center mb-20"
+                >
+                    <p
+                        className="font-mono text-xs tracking-[0.3em] uppercase mb-6"
+                        style={{ color: 'var(--accent-primary)' }}
                     >
-                        {status === 'success' ? '✓ Subscribed' : 'Subscribe'}
-                    </Button>
-                </form>
-
-                {status === 'error' && (
-                    <p className="mt-3 text-sm text-red-500" role="alert">
-                        Something went wrong. Please try again.
+                        Est. 2011
                     </p>
-                )}
-            </section>
-        </article>
+                    <h2
+                        id="bio-heading"
+                        className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider leading-[0.9] max-w-5xl mx-auto"
+                        style={{ color: 'var(--fg-primary)' }}
+                    >
+                        "THE ARCHITECT
+                        <br />
+                        <span style={{ color: 'var(--accent-primary)' }}>OF THE SOUND"</span>
+                    </h2>
+                </motion.div>
+
+                {/* Main Content Grid */}
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-24">
+                    {/* Portrait Column */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7 }}
+                        style={{ y }}
+                        className="relative"
+                    >
+                        <div
+                            className="relative aspect-[3/4] rounded-lg overflow-hidden"
+                            style={{
+                                boxShadow: 'var(--shadow-xl)'
+                            }}
+                        >
+                            {/* Placeholder - use actual portrait */}
+                            <div
+                                className="w-full h-full"
+                                style={{
+                                    background: 'linear-gradient(145deg, #1a1a2e 0%, #0c0c10 50%, #1a0a10 100%)'
+                                }}
+                            >
+                                <img
+                                    src="/gallery/dustdigital-242.JPG"
+                                    alt="Mike WiLL Made-It portrait"
+                                    className="w-full h-full object-cover"
+                                    style={{ filter: 'grayscale(30%) contrast(1.1)' }}
+                                />
+                            </div>
+
+                            {/* Film grain overlay */}
+                            <div
+                                className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
+                                style={{
+                                    backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")'
+                                }}
+                            />
+
+                            {/* Gradient overlay */}
+                            <div
+                                className="absolute inset-0"
+                                style={{
+                                    background: 'linear-gradient(0deg, rgba(0,0,0,0.4) 0%, transparent 30%)'
+                                }}
+                            />
+                        </div>
+
+                        {/* Floating accent */}
+                        <div
+                            className="absolute -bottom-6 -right-6 w-32 h-32 rounded-lg -z-10"
+                            style={{
+                                background: 'var(--accent-primary)',
+                                opacity: 0.2
+                            }}
+                        />
+                    </motion.div>
+
+                    {/* Bio Text Column */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        className="lg:pt-12"
+                    >
+                        <h3
+                            className="font-display text-3xl sm:text-4xl tracking-wider mb-6"
+                            style={{ color: 'var(--fg-primary)' }}
+                        >
+                            MIKE WILL MADE-IT
+                        </h3>
+
+                        <div className="space-y-6">
+                            <p
+                                className="font-body text-lg leading-relaxed"
+                                style={{ color: 'var(--fg-secondary)' }}
+                            >
+                                {bio.summary}
+                            </p>
+
+                            {bio.sections.map((section, index) => (
+                                <motion.div
+                                    key={section.title}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                                >
+                                    <h4
+                                        className="font-display text-xl tracking-wider mb-2"
+                                        style={{ color: 'var(--accent-primary)' }}
+                                    >
+                                        {section.title}
+                                    </h4>
+                                    <p
+                                        className="font-body text-base leading-relaxed"
+                                        style={{ color: 'var(--fg-muted)' }}
+                                    >
+                                        {section.content}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Social Links */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.6 }}
+                            className="flex flex-wrap gap-3 mt-10"
+                        >
+                            <SocialLink
+                                href={bio.socials.instagram.url}
+                                icon={Instagram}
+                                label="Instagram"
+                            />
+                            <SocialLink
+                                href={bio.socials.twitter.url}
+                                icon={Twitter}
+                                label="X (Twitter)"
+                            />
+                            <SocialLink
+                                href={bio.socials.youtube.url}
+                                icon={Youtube}
+                                label="YouTube"
+                            />
+                            <SocialLink
+                                href={bio.socials.spotify.url}
+                                icon={Music2}
+                                label="Spotify"
+                            />
+                        </motion.div>
+                    </motion.div>
+                </div>
+
+                {/* Horizontal Timeline */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                    className="relative"
+                >
+                    <h3
+                        className="font-display text-2xl tracking-wider mb-12 text-center"
+                        style={{ color: 'var(--fg-primary)' }}
+                    >
+                        THE JOURNEY
+                    </h3>
+
+                    {/* Timeline Container */}
+                    <div className="relative overflow-x-auto pb-4 scrollbar-hide">
+                        <div className="flex items-center justify-between min-w-max px-4">
+                            {/* Timeline Line */}
+                            <div
+                                className="absolute top-1/2 left-0 right-0 h-px -translate-y-1/2"
+                                style={{ background: 'rgba(255,255,255,0.1)' }}
+                            />
+
+                            {/* Progress Line */}
+                            <motion.div
+                                className="absolute top-1/2 left-0 h-px -translate-y-1/2"
+                                style={{
+                                    background: 'var(--accent-primary)',
+                                    width: '85%'
+                                }}
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, delay: 0.3 }}
+                            />
+
+                            {milestones.map((milestone, index) => (
+                                <motion.div
+                                    key={milestone.year}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                    className="relative flex flex-col items-center px-6 lg:px-10"
+                                >
+                                    {/* Dot */}
+                                    <div
+                                        className="w-4 h-4 rounded-full z-10 mb-4"
+                                        style={{
+                                            background: index === milestones.length - 1
+                                                ? 'var(--accent-secondary)'
+                                                : 'var(--accent-primary)',
+                                            boxShadow: `0 0 20px ${index === milestones.length - 1
+                                                ? 'var(--glow-gold)'
+                                                : 'var(--glow-primary)'}`
+                                        }}
+                                    />
+
+                                    {/* Year */}
+                                    <span
+                                        className="font-mono text-xs font-bold tracking-wider mb-1"
+                                        style={{ color: 'var(--accent-primary)' }}
+                                    >
+                                        {milestone.year}
+                                    </span>
+
+                                    {/* Title */}
+                                    <span
+                                        className="font-display text-lg tracking-wider text-center"
+                                        style={{ color: 'var(--fg-primary)' }}
+                                    >
+                                        {milestone.title}
+                                    </span>
+
+                                    {/* Description */}
+                                    <span
+                                        className="font-body text-xs text-center mt-1"
+                                        style={{ color: 'var(--fg-subtle)' }}
+                                    >
+                                        {milestone.desc}
+                                    </span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+// Social Link Component
+interface SocialLinkProps {
+    href: string;
+    icon: typeof Instagram;
+    label: string;
+}
+
+function SocialLink({ href, icon: Icon, label }: SocialLinkProps) {
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-4 py-2.5 rounded-sm transition-all hover:scale-105"
+            style={{
+                background: 'var(--bg-surface)',
+                border: '1px solid rgba(255,255,255,0.1)'
+            }}
+            aria-label={`${label} (opens in new tab)`}
+        >
+            <Icon
+                className="w-4 h-4 transition-colors group-hover:text-accent"
+                style={{ color: 'var(--fg-muted)' }}
+            />
+            <span
+                className="font-mono text-xs uppercase tracking-wider transition-colors group-hover:text-white"
+                style={{ color: 'var(--fg-subtle)' }}
+            >
+                {label}
+            </span>
+        </a>
     );
 }

@@ -1,20 +1,40 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import AnalyticsSetup from "@/components/AnalyticsSetup";
 import AxeCore from "@/components/AxeCore";
+import LenisProvider from "@/components/LenisProvider";
 
-const inter = Inter({
+// Primary body font
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: '--font-sans',
+  variable: '--font-body',
+  display: 'swap',
+});
+
+// Monospace font for metadata/dates
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: '--font-mono',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: "THE R3SET - Mike Will Made-It",
-  description: "Experience the new album THE R3SET by Mike Will Made-It",
+  description: "Experience the new era by Mike Will Made-It. Grammy-winning producer behind hits for Beyoncé, Kendrick Lamar, and Rihanna. THE R3SET drops 2026.",
+  keywords: ["Mike WiLL Made-It", "THE R3SET", "hip-hop producer", "Eardrummer Records", "Grammy producer"],
   icons: {
     icon: '/favicon.ico',
+  },
+  openGraph: {
+    title: "THE R3SET - Mike Will Made-It",
+    description: "Experience the new era by Mike Will Made-It",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "THE R3SET - Mike Will Made-It",
+    description: "Experience the new era by Mike Will Made-It",
   },
 };
 
@@ -24,8 +44,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
+        {/* Preload Bebas Neue display font (loaded via CSS) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
@@ -42,17 +66,12 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className="antialiased">
-        {/* Skip to content link - accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-sm focus:outline-none"
-        >
-          Skip to main content
-        </a>
-        <AnalyticsSetup />
-        <AxeCore />
-        {children}
+      <body className="antialiased" style={{ fontFamily: 'var(--font-body)' }}>
+        <LenisProvider>
+          <AnalyticsSetup />
+          <AxeCore />
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
