@@ -7,10 +7,6 @@ import { motion } from 'framer-motion';
 import { scrollSequences, bio } from '@/lib/content';
 
 // Dynamic imports for code splitting
-const AlbumShowcase = dynamic(() => import('@/components/AlbumShowcase'), {
-  loading: () => <div className="min-h-screen animate-pulse" style={{ background: 'var(--bg-void)' }} />,
-});
-
 const DiscographySection = dynamic(() => import('@/components/DiscographySection'), {
   loading: () => <div className="min-h-[800px] animate-pulse" style={{ background: 'var(--bg-void)' }} />,
 });
@@ -42,16 +38,15 @@ const FloatingMerchPromo = dynamic(() => import('@/components/FloatingMerchPromo
  * Section Order (User-Specified):
  * 1. Hero Video Sequence (clip-1)
  * 2. Chapter I Teaser (R3SET)
- * 3. Album Cover Art Showcase
- * 4. Video Transition: Young → Old Mike Forest (clip-2)
- * 5. Discography Section
- * 6. Video Transition: Studio Session (clip-3)
- * 7. Media Section (Videos + Photos)
- * 8. Video Transition (clip-4)
- * 9. Bio Section
- * 10. Video Transition: Warehouse (clip-5)
- * 11. Merch Section
- * 12. Footer
+ * 3. Video Transition: Young → Old Mike Forest (clip-2)
+ * 4. Discography Section
+ * 5. Video Transition: Studio Session (clip-3)
+ * 6. Media Section (Videos + Photos)
+ * 7. Video Transition (clip-4)
+ * 8. Bio Section
+ * 9. Video Transition: Warehouse (clip-5)
+ * 10. Merch Section
+ * 11. Footer
  */
 export default function Home() {
   return (
@@ -145,10 +140,7 @@ export default function Home() {
           <ChapterOneTeaser />
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 3: ALBUM COVER ART SHOWCASE
-        ═══════════════════════════════════════════════════════════════════ */}
-        <AlbumShowcase />
+
 
         {/* ═══════════════════════════════════════════════════════════════════
             VIDEO TRANSITION: Young → Old Mike Forest (clip-2)
